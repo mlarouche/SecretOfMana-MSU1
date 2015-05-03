@@ -29,9 +29,9 @@ if {defined EMULATOR_VOLUME} {
 }
 
 // Game variables
-variable MusicCommand($1E00)
-variable RequestedSong($1E01)
-variable PreviousSong($1E05)
+variable MusicCommand($7E1E00)
+variable RequestedSong($7E1E01)
+variable PreviousSong($7E1E05)
 
 // **********
 // * Macros *
@@ -48,50 +48,18 @@ macro CheckMSUPresence(labelToJump) {
 	bne {labelToJump}
 }
 
-// JSL to $C30004 found via hex editor
-seek($C00FDC)
+seek($C30004)
+	jmp MSU_Hijack
+	
+seek($C324C0)
+MSU_Hijack:
 	jsl MSU_Main
-seek($C029F7)
-	jsl MSU_Main
-seek($C0399F)
-	jsl MSU_Main
-// This one make the game crash when you hurt a Rabite
-//seek($C04170)
-//	jsl MSU_Main
-seek($C08154)
-	jsl MSU_Main
-seek($C08CF3)
-	jsl MSU_Main
-seek($C0B586)
-	jsl MSU_Main
-seek($C137A5)
-	jsl MSU_Main
-seek($C1D4FD)
-	jsl MSU_Main
-seek($C1DAD5)
-	jsl MSU_Main
-seek($C1F109)
-	jsl MSU_Main
-seek($C230DC)
-	jsl MSU_Main
-seek($C230F8)
-	jsl MSU_Main
-seek($C23103)
-	jsl MSU_Main
-seek($C23116)
-	jsl MSU_Main
-seek($C2A93E)
-	jsl MSU_Main
-seek($C640D2)
-	jsl MSU_Main
-seek($C79B3E)
-	jsl MSU_Main
-	// This one crashes at start, compressed data
-//seek($C7B0FE)
-//	jsl MSU_Main
-seek($D0CEF1)
-	jsl MSU_Main
-
+	bcc ReturnToCode
+	jmp $0160
+	
+ReturnToCode:
+	rtl
+	
 // MSU code
 seek($C8FEE0)
 scope MSU_Main: {
@@ -104,7 +72,7 @@ scope MSU_Main: {
 	sep #$20
 	CheckMSUPresence(OriginalCode)
 	
-	lda.w MusicCommand
+	lda MusicCommand
 	beq DoNothing
 	
 	cmp #$80
@@ -117,27 +85,18 @@ scope MSU_Main: {
 	
 	// Check if the song is already playing
 	xba
-	lda $1E02
+	lda $7E1E02
 	and #$0F
 	pha
-	lda.w RequestedSong
+	lda RequestedSong
 	pha
 	plx
 	cpx PreviousSong
 	beq DoNothing
 	
 	// Set MSU-1 track
-	lda.w RequestedSong
+	lda RequestedSong
 	sta MSU_AUDIO_TRACK_LO
-	
-	// Set previous song for game
-	sta.w PreviousSong
-	lda $1E02
-	and #$0F
-	sta $1E06
-	lda $1E03
-	sta $1E07
-	
 	lda.b #$00
 	sta MSU_AUDIO_TRACK_HI
 	
@@ -149,7 +108,7 @@ CheckMSUAudioStatus:
 	// Check if the track is missing
 	lda MSU_STATUS
 	and.b #MSU_STATUS_TRACK_MISSING
-	bne OriginalCode
+	bne TrackMissing
 	
 	// Play the song and add repeat if needed
 	//jsr TrackNeedLooping
@@ -160,7 +119,20 @@ CheckMSUAudioStatus:
 	lda.b #FULL_VOLUME
 	sta MSU_AUDIO_VOLUME
 	
+	// Set previous song for game
+	lda RequestedSong
+	sta PreviousSong
+	lda $7E1E02
+	and #$0F
+	sta $7E1E06
+	lda $7E1E03
+	sta $7E1E07
+	
 	jmp DoNothing
+	
+TrackMissing:
+	lda.b #$01
+	sta MusicCommand
 	
 OriginalCode:
 	rep #$30
@@ -168,7 +140,8 @@ OriginalCode:
 	plx
 	pla
 	plp
-	jml $C30004
+	sec
+	rtl
 	
 DoNothing:
 	rep #$30
@@ -176,11 +149,12 @@ DoNothing:
 	plx
 	pla
 	plp
+	clc
 	rtl
 	
 DoFade:
 	// TODO: Do actual fade
-	lda.w RequestedSong
+	lda RequestedSong
 	cmp #$8F
 	bne FadeOut
 	
