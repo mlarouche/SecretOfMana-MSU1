@@ -36,7 +36,14 @@ Launch the game and voilà, enjoy !
 =========
 = Music =
 =========
-
+$0E / 14 = Into the tick of it
+$11 / 17 = The Color of the Summer Sky
+$12 / 18 = Menu music
+$18 / 24 = Got Mana Sword SFX
+$1C / 28 = Always Together / Together Always
+$2B / 43 = In the Darkness' Depths (The Dead of Night)
+$2C / 44 = Angel's Fear
+$2D / 45 = Squaresoft rowing sound
 
 =============
 = Compiling =
