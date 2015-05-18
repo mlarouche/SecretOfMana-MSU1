@@ -11,12 +11,6 @@ copy README.txt SecretOfMana_MSU1
 copy som_msu1.msu SecretOfMana_MSU1
 copy som_msu1.xml SecretOfMana_MSU1
 copy manifest.bml SecretOfMana_MSU1
-rem Remove these for final distribution
-copy create_pcm.bat SecretOfMana_MSU1
-copy edit_audio.bat SecretOfMana_MSU1
-copy secret_of_mana_msu1.asm SecretOfMana_MSU1
-copy make.bat SecretOfMana_MSU1
-copy wav2msu.exe SecretOfMana_MSU1
 
 "C:\Program Files\7-Zip\7z" a -r SecretOfMana_MSU1.zip SecretOfMana_MSU1
 

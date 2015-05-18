@@ -1,0 +1,58 @@
+unverified
+
+cartridge region=NTSC
+  rom name=som_msu1.sfc size=0x200000
+  ram name=save.ram size=0x2000
+  map id=rom address=00-3f,80-bf:8000-ffff
+  map id=rom address=40-7f,c0-ff:0000-ffff
+  map id=ram address=10-3f,90-bf:6000-7fff mask=0xe000
+
+  msu1
+    rom name=som_msu1.msu size=0x0000
+    map id=io address=00-3f,80-bf:2000-2007
+    track number=0 name=som_msu1-0.pcm
+    track number=1 name=som_msu1-1.pcm
+    track number=2 name=som_msu1-2.pcm
+    track number=3 name=som_msu1-3.pcm
+    track number=4 name=som_msu1-4.pcm
+    track number=5 name=som_msu1-5.pcm
+    track number=6 name=som_msu1-6.pcm
+    track number=7 name=som_msu1-7.pcm
+    track number=8 name=som_msu1-8.pcm
+    track number=9 name=som_msu1-9.pcm
+    track number=10 name=som_msu1-10.pcm
+    track number=11 name=som_msu1-11.pcm
+    track number=12 name=som_msu1-12.pcm
+    track number=13 name=som_msu1-13.pcm
+    track number=14 name=som_msu1-14.pcm
+    track number=15 name=som_msu1-15.pcm
+    track number=16 name=som_msu1-16.pcm
+    track number=17 name=som_msu1-17.pcm
+    track number=19 name=som_msu1-19.pcm
+    track number=20 name=som_msu1-20.pcm
+    track number=21 name=som_msu1-21.pcm
+    track number=22 name=som_msu1-22.pcm
+    track number=27 name=som_msu1-27.pcm
+    track number=28 name=som_msu1-28.pcm
+    track number=29 name=som_msu1-29.pcm
+    track number=31 name=som_msu1-31.pcm
+    track number=32 name=som_msu1-32.pcm
+    track number=36 name=som_msu1-36.pcm
+    track number=37 name=som_msu1-37.pcm
+    track number=38 name=som_msu1-38.pcm
+    track number=39 name=som_msu1-39.pcm
+    track number=41 name=som_msu1-41.pcm
+    track number=42 name=som_msu1-42.pcm
+    track number=43 name=som_msu1-43.pcm
+    track number=49 name=som_msu1-49.pcm
+    track number=50 name=som_msu1-50.pcm
+    track number=51 name=som_msu1-51.pcm
+    track number=52 name=som_msu1-52.pcm
+    track number=54 name=som_msu1-54.pcm
+    track number=55 name=som_msu1-55.pcm
+    track number=56 name=som_msu1-56.pcm
+    track number=57 name=som_msu1-57.pcm
+    track number=58 name=som_msu1-58.pcm
+
+information
+  title: som_msu1

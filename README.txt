@@ -1,9 +1,9 @@
 Secret of Mana (U) MSU-1
-Version 1.0
+Version 0.9 Beta
 by DarkShock
 
 This hack adds CD quality audio to Secret of Mana (U) using the MSU-1 chip invented by byuu.
-The hack has been tested on SD2SNES, BSNES 075 and higan 094. The patched ROM needs to be named som_msu1.sfc.
+The hack has been tested on SD2SNES, BSNES 075, bsnes-plus 073.1b and higan 094. The patched ROM needs to be named som_msu1.sfc.
 
 ===============
 = Using BSNES =
@@ -24,7 +24,7 @@ The hack has been tested on SD2SNES, BSNES 075 and higan 094. The patched ROM ne
 ====================
 = Using on SD2SNES =
 ====================
-Drop the ROM file, topgear2_msu1.msu and the .pcm files in any folder. (I really suggest creating a folder)
+Drop the ROM file, som_msu1.msu and the .pcm files in any folder. (I really suggest creating a folder)
 Launch the game and voilà, enjoy !
 
 ===========
