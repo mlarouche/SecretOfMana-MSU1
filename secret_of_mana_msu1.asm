@@ -48,6 +48,14 @@ macro CheckMSUPresence(labelToJump) {
 	bne {labelToJump}
 }
 
+seek($008008)
+	jml Reset_Hijack
+	
+// Override NMI vector to call a custom RAM address
+// with my hijack
+seek($C0FFEA)
+	db $22,$01
+	
 seek($C30004)
 	jmp MSU_Hijack
 	
@@ -198,5 +206,33 @@ Handshake:
 }
 
 if (pc() > $C8FFFF) {
-	error "Overflow detected"
+	error "Overflow detected in MSU code"
+}
+
+// NMI & Reset hijack code
+seek($CAFF70)
+scope Reset_Hijack: {
+	ldx #$00
+
+hijackLoop:
+	lda codeData,x
+	sta $0122,x
+	inx
+	cpx #$04
+	bne hijackLoop
+
+	// Original code hijacked
+	jml $C10010
+	
+codeData:
+	jml NMI_Update
+}
+
+scope NMI_Update: {
+	// Call actual NMI code
+	jml $000100
+}
+
+if (pc() > $CAFFFF) {
+	error "Overflow detected in Reset/NMI hijack code"
 }
