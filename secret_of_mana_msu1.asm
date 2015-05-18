@@ -73,10 +73,17 @@ scope MSU_Main: {
 	CheckMSUPresence(OriginalCode)
 	
 	lda MusicCommand
-	beq DoNothing
-	
+	bne +;
+	jmp DoNothing
++;
 	cmp #$80
-	beq DoFade
+	bne +;
+	jmp DoFade
++;
+	cmp #$F1
+	bne +;
+	jmp FadeOut
++;
 	cmp #$01
 	bne OriginalCode
 	
@@ -93,6 +100,28 @@ scope MSU_Main: {
 	plx
 	cpx PreviousSong
 	beq DoNothing
+	
+	bra PlayMSUTrack
+	
+TrackMissing:
+	lda.b #$01
+	sta MusicCommand
+	
+	lda.b #$00
+	sta MSU_AUDIO_VOLUME
+	
+OriginalCode:
+	rep #$30
+	ply
+	plx
+	pla
+	plp
+	sec
+	rtl
+	
+PlayMSUTrack:
+	// Current current SPC song playing, if any
+	jsr Stop_SPC
 	
 	// Set MSU-1 track
 	lda RequestedSong
@@ -128,24 +157,6 @@ CheckMSUAudioStatus:
 	lda $7E1E03
 	sta $7E1E07
 	
-	jmp DoNothing
-	
-TrackMissing:
-	lda.b #$01
-	sta MusicCommand
-	
-	lda.b #$00
-	sta MSU_AUDIO_VOLUME
-	
-OriginalCode:
-	rep #$30
-	ply
-	plx
-	pla
-	plp
-	sec
-	rtl
-	
 DoNothing:
 	rep #$30
 	ply
@@ -172,6 +183,18 @@ FadeOut:
 	sta MSU_AUDIO_CONTROL
 ExitFade:
 	jmp OriginalCode
+}
+
+scope Stop_SPC: {
+	lda #$F1
+	sta SPC_COMM_0
+Handshake:
+	cmp SPC_COMM_0
+	bne Handshake
+	
+	lda #$00
+	sta SPC_COMM_0
+	rts
 }
 
 if (pc() > $C8FFFF) {
