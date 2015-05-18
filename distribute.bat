@@ -5,15 +5,22 @@ del /q SecretOfMana_MSU1_Music.7z
 
 mkdir SecretOfMana_MSU1
 ucon64 -q --snes --chk som_msu1.sfc
-ucon64 -q --mki=topgear2_original.sfc som_msu1.sfc
+ucon64 -q --mki=som_original.sfc som_msu1.sfc
 copy som_msu1.ips SecretOfMana_MSU1
 copy README.txt SecretOfMana_MSU1
 copy som_msu1.msu SecretOfMana_MSU1
 copy som_msu1.xml SecretOfMana_MSU1
 copy manifest.bml SecretOfMana_MSU1
+rem Remove these for final distribution
+copy create_pcm.bat SecretOfMana_MSU1
+copy edit_audio.bat SecretOfMana_MSU1
+copy secret_of_mana_msu1.asm SecretOfMana_MSU1
+copy make.bat SecretOfMana_MSU1
+copy wav2msu.exe SecretOfMana_MSU1
+
 "C:\Program Files\7-Zip\7z" a -r SecretOfMana_MSU1.zip SecretOfMana_MSU1
 
-"C:\Program Files\7-Zip\7z" a SecretOfMana_MSU1_Music.7z *.pcm
+rem "C:\Program Files\7-Zip\7z" a SecretOfMana_MSU1_Music.7z *.pcm
 
 del /q som_msu1.ips
 rmdir /s /q SecretOfMana_MSU1

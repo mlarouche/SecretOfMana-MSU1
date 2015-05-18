@@ -134,6 +134,9 @@ TrackMissing:
 	lda.b #$01
 	sta MusicCommand
 	
+	lda.b #$00
+	sta MSU_AUDIO_VOLUME
+	
 OriginalCode:
 	rep #$30
 	ply
@@ -168,7 +171,7 @@ FadeOut:
 	lda #$00
 	sta MSU_AUDIO_CONTROL
 ExitFade:
-	jmp DoNothing
+	jmp OriginalCode
 }
 
 if (pc() > $C8FFFF) {
