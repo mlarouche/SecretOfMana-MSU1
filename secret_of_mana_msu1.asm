@@ -303,11 +303,22 @@ scope MSU_Stop: {
 }
 
 scope Stop_SPC: {
+	// Stop SPC music
 	lda #$F1
 	sta SPC_COMM_0
 Handshake:
 	cmp SPC_COMM_0
 	bne Handshake
+	
+	lda #$00
+	sta SPC_COMM_0
+	
+	// Stop looping SFX
+	lda #$F2
+	sta SPC_COMM_0
+Handshake2:
+	cmp SPC_COMM_0
+	bne Handshake2
 	
 	lda #$00
 	sta SPC_COMM_0
