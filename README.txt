@@ -1,9 +1,16 @@
-Secret of Mana (U) MSU-1
+Secret of Mana/Seiken Densetsu 2 MSU-1
 Version 0.9 Beta
 by DarkShock
 
 This hack adds CD quality audio to Secret of Mana (U) using the MSU-1 chip invented by byuu.
 The hack has been tested on SD2SNES, BSNES 075, bsnes-plus 073.1b and higan 094. The patched ROM needs to be named som_msu1.sfc.
+
+Works also with:
+- Seiken Densetsu 2 (J)
+- Secret of Mana (F)
+
+**** IMPORTANT FOR PAL ROM *****
+You need to edit the manifest file (som_msu1.xml or manifest.bml) and change NTSC to PAL in order to work
 
 ===============
 = Using BSNES =

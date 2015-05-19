@@ -14,7 +14,7 @@ copy manifest.bml SecretOfMana_MSU1
 
 "C:\Program Files\7-Zip\7z" a -r SecretOfMana_MSU1.zip SecretOfMana_MSU1
 
-rem "C:\Program Files\7-Zip\7z" a SecretOfMana_MSU1_Music.7z *.pcm
+"C:\Program Files\7-Zip\7z" a SecretOfMana_MSU1_Music.7z *.pcm
 
 del /q som_msu1.ips
 rmdir /s /q SecretOfMana_MSU1
