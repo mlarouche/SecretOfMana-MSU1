@@ -28,26 +28,42 @@ cartridge region=NTSC
     track number=15 name=som_msu1-15.pcm
     track number=16 name=som_msu1-16.pcm
     track number=17 name=som_msu1-17.pcm
+    track number=18 name=som_msu1-18.pcm
     track number=19 name=som_msu1-19.pcm
     track number=20 name=som_msu1-20.pcm
     track number=21 name=som_msu1-21.pcm
     track number=22 name=som_msu1-22.pcm
+    track number=23 name=som_msu1-23.pcm
+    track number=24 name=som_msu1-24.pcm
+    track number=25 name=som_msu1-25.pcm
+    track number=26 name=som_msu1-26.pcm
     track number=27 name=som_msu1-27.pcm
     track number=28 name=som_msu1-28.pcm
     track number=29 name=som_msu1-29.pcm
+    track number=30 name=som_msu1-30.pcm
     track number=31 name=som_msu1-31.pcm
     track number=32 name=som_msu1-32.pcm
+    track number=33 name=som_msu1-33.pcm
+    track number=34 name=som_msu1-34.pcm
+    track number=35 name=som_msu1-35.pcm
     track number=36 name=som_msu1-36.pcm
     track number=37 name=som_msu1-37.pcm
     track number=38 name=som_msu1-38.pcm
     track number=39 name=som_msu1-39.pcm
+    track number=40 name=som_msu1-40.pcm
     track number=41 name=som_msu1-41.pcm
     track number=42 name=som_msu1-42.pcm
     track number=43 name=som_msu1-43.pcm
+    track number=44 name=som_msu1-44.pcm
+    track number=45 name=som_msu1-45.pcm
+    track number=46 name=som_msu1-46.pcm
+    track number=47 name=som_msu1-47.pcm
+    track number=48 name=som_msu1-48.pcm
     track number=49 name=som_msu1-49.pcm
     track number=50 name=som_msu1-50.pcm
     track number=51 name=som_msu1-51.pcm
     track number=52 name=som_msu1-52.pcm
+    track number=53 name=som_msu1-53.pcm
     track number=54 name=som_msu1-54.pcm
     track number=55 name=som_msu1-55.pcm
     track number=56 name=som_msu1-56.pcm

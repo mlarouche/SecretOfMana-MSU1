@@ -1,3 +1,3 @@
 @ECHO OFF
 
-make && create_pcm && distribute
+make && distribute

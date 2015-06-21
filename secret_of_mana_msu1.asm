@@ -193,8 +193,8 @@ IsMSUReady:
 	bne TrackMissing
 	
 	// Play the song and add repeat if needed
-	//jsr TrackNeedLooping
-	lda #$03
+	lda RequestedSong
+	jsr TrackNeedLooping
 	sta MSU_AUDIO_CONTROL
 	
 	// Set volume
@@ -223,6 +223,55 @@ TrackMissing:
 	sta MSU_AUDIO_VOLUME
 
 	sec
+	rts
+}
+
+scope TrackNeedLooping: {
+	// $17 / 23 = Victory ! (Jingle)
+	cmp.b #$17
+	beq noLooping
+	// $19 Cannon Travel Lunch (SFX)
+	cmp.b #$19
+	beq noLooping
+	// $1A Cannon Travel (SFX)
+	cmp.b #$1A
+	beq noLooping
+	// $1E New Contient Rises (SFX)
+	cmp.b #$1E
+	beq noLooping
+	// $21 Unused Jingle 1
+	cmp.b #$21
+	beq noLooping
+	// $22 Midge Mallet (SFX)
+	cmp.b #$22
+	beq noLooping
+	// $23 Unknown Jingle 2
+	cmp.b #$23
+	beq noLooping
+	// $28 Flammie Coming (SFX)
+	cmp.b #$28
+	beq noLooping
+	// $2D Mysterious Moaning
+	cmp.b #$2D
+	beq noLooping
+	// $2E Mara's Key (Jingle)
+	cmp.b #$2E
+	beq noLooping
+	// $2F Got an Item (Jingle)
+	cmp.b #$2F
+	beq noLooping
+	// $30 Elemental Acquired (Jingle)
+	cmp.b #$30
+	beq noLooping
+	// $35 Ally Joins (Jingle)
+	cmp.b #$35
+	beq noLooping
+	
+	// Track loops
+	lda.b #$03
+	rts
+noLooping:
+	lda #$01
 	rts
 }
 

@@ -1,9 +1,11 @@
 Secret of Mana/Seiken Densetsu 2 MSU-1
-Version 0.9 Beta
+Version 1.0
 by DarkShock
 
-This hack adds CD quality audio to Secret of Mana (U) using the MSU-1 chip invented by byuu.
-The hack has been tested on SD2SNES, BSNES 075, bsnes-plus 073.1b and higan 094. The patched ROM needs to be named som_msu1.sfc.
+This hack adds CD quality audio to Secret of Mana using the MSU-1 chip invented by byuu.
+The hack has been tested on SD2SNES, bsnes-plus 073.1b and higan 094. The patched ROM needs to be named som_msu1.sfc.
+
+BSNES v075 or any other version is NOT RECOMMENDED, use bsnes-plus it's much better (and also the emulator I use for testing/analysis/debugging).
 
 Works also with:
 - Seiken Densetsu 2 (J)
@@ -11,6 +13,13 @@ Works also with:
 
 **** IMPORTANT FOR PAL ROM *****
 You need to edit the manifest file (som_msu1.xml or manifest.bml) and change NTSC to PAL in order to work
+
+In order for this to work, you need the music pack available here: https://www.mediafire.com/?q6lss155pnywtt3
+
+=================
+= Patch the ROM =
+=================
+Use Lunar IPS or your favorite IPS patcher to patch the ROM.
 
 ===============
 = Using BSNES =
@@ -24,7 +33,7 @@ You need to edit the manifest file (som_msu1.xml or manifest.bml) and change NTS
 ===============
 1. Patch the ROM
 2. Launch it using higan
-3. Go to %USERPROFILE%\Emulation\Super Famicom\topgear2s_msu1.sfc in Windows Explorer.
+3. Go to %USERPROFILE%\Emulation\Super Famicom\som_msu1.sfc in Windows Explorer.
 4. Copy manifest.bml and the .pcm file there
 5. Run the game
 
@@ -37,8 +46,10 @@ Launch the game and voilà, enjoy !
 ===========
 = Credits =
 ===========
-* DarkShock - ASM hacking & coding, Music editing
-* David Thomas /GinBunBun - Music compilation
+* DarkShock - ASM hacking & coding
+* David Thomas / GinBunBun - Music compilation
+* NTI Productions - Music editing
+* Datschge - SPC dump
 
 =========
 = Music =
@@ -66,8 +77,8 @@ $13 / 19 = The Legend
 $14 / 20 = The Orphan of Storm
 $15 / 21 = Eight Ringing Bells
 $16 / 22 = Dancing Beasts
-$17 / 23 = Victory !
-$18 / 24 = Got Mana Sword SFX
+$17 / 23 = Victory ! (Jingle)
+$18 / 24 = Boss Defeated
 $19 / 25 = Cannon Travel Lunch (SFX)
 $1A / 26 = Cannon Travel (SFX)
 $1B / 27 = Ceremony
@@ -76,9 +87,9 @@ $1D / 29 = A Prayer and a Whisper
 $1E / 30 = New Contient Rises (SFX)
 $1F / 31 = Happenings on a Moonlight Night
 $20 / 32 = A Curious Happening
-$21 / 33 = ?????
+$21 / 33 = Unused Jingle 1
 $22 / 34 = Midge Mallet (SFX)
-$23 / 35 = Unknown Jingle
+$23 / 35 = Unknown Jingle 2
 $24 / 36 = A Wish
 $25 / 37 = Monarch on the Shore
 $26 / 38 = Steel and Traps
@@ -88,10 +99,10 @@ $29 / 41 = Kind Memories
 $2A / 42 = The Holy Intruder
 $2B / 43 = In the Darkness' Depths (The Dead of Night)
 $2C / 44 = Angel's Fear
-$2D / 45 = Squaresoft rowing sound
-$2E / 46 = (Jingle)
-$2F / 47 = (Jingle)
-$30 / 48 = (Jingle)
+$2D / 45 = Mysterious Moaning
+$2E / 46 = Mara's Key (Jingle)
+$2F / 47 = Got an Item (Jingle)
+$30 / 48 = Elemental Acquired (Jingle)
 $31 / 49 = Give Love its Rightful Time
 $32 / 50 = The Second Truth from the left
 $33 / 51 = The Curse
@@ -112,6 +123,7 @@ To compile the hack you need
 
 * bass v14 (https://web.archive.org/web/20140710190910/http://byuu.org/files/bass_v14.tar.xz)
 * wav2msu (https://github.com/mlarouche/wav2msu)
+* sox (https://sox.sourceforge.net/)
 
 To distribute the hack you need
 
@@ -120,5 +132,6 @@ To distribute the hack you need
 
 make.bat assemble the patch
 create_pcm.bat create the .pcm from the WAV files
+edit_audio.bat process the WAV files with SOX
 distribute.bat distribute the patch
 make_all.bat does everything
